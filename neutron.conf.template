@@ -1,0 +1,45 @@
+# 新規作成
+[DEFAULT]
+core_plugin = ml2
+service_plugins = router
+auth_strategy = keystone
+state_path = /var/lib/neutron
+dhcp_agent_notification = True
+allow_overlapping_ips = True
+notify_nova_on_port_status_changes = True
+notify_nova_on_port_data_changes = True
+# RabbitMQ 接続情報
+transport_url = rabbit://{{RABBITMQ_USER}}:{{RABBITMQ_PASSWORD}}@openstack-mq
+
+[agent]
+root_helper = sudo /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf
+
+# Keystone 認証情報
+[keystone_authtoken]
+www_authenticate_uri = http://openstack-keystone:5000
+auth_url = http://openstack-keystone:5000
+memcached_servers = openstack-memcached:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = {{ NEUTRON_USER }}
+password = {{ NEUTRON_PASSWORD }}
+
+# MariaDB 接続情報
+[database]
+connection = mysql+pymysql://{{NEUTRON_USER}}:{{NEUTRON_PASSWORD}}@{{ OPENSTACK_DBHOST or 'openstack-db' }}/neutron_ml2
+
+# Nova 接続情報
+[nova]
+auth_url = http://openstack-keystone:5000
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+region_name = RegionOne
+project_name = service
+username = {{ NOVA_USER }}
+password = {{ NOVA_PASSWORD }}
+
+[oslo_concurrency]
+lock_path = /tmp
