@@ -9,7 +9,7 @@ RUN apt update -y \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
-ADD neutron.conf.template /template
+ADD template/neutron.conf.template /template
 
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
