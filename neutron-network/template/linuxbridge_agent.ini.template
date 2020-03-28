@@ -1,0 +1,10 @@
+[DEFAULT]
+[agent]
+[linux_bridge]
+[network_log]
+[securitygroup]
+firewall_driver = iptables
+enable_security_group = true
+enable_ipset = true
+[vxlan]
+local_ip = 192.168.11.153

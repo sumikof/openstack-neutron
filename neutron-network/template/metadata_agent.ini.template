@@ -1,0 +1,6 @@
+[DEFAULT]
+nova_metadata_host = openstack-nova
+nova_metadata_port = 8775
+metadata_proxy_shared_secret = {{ META_SECRET or 'metadata_secret' }}
+[agent]
+[cache]

@@ -1,4 +1,4 @@
-NAME=sumikof/openstack-neutron
+NAME=sumikof/openstack-neutron-controller
 VERSION=arm
 
 build:

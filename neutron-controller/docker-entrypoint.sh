@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -x
 
 render neutron.conf.template -o /etc/neutron/neutron.conf
 render metadata_agent.ini.template -o /etc/neutron/metadata_agent.ini

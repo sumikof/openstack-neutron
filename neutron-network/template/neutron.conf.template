@@ -1,0 +1,21 @@
+[DEFAULT]
+core_plugin = ml2
+service_plugins = router
+auth_strategy = keystone
+state_path = /var/lib/neutron
+allow_overlapping_ips = True
+transport_url = rabbit://{{RABBITMQ_USER}}:{{RABBITMQ_PASSWORD}}@openstack-mq
+[agent]
+root_helper = sudo /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf
+[keystone_authtoken]
+www_authenticate_uri = http://openstack-keystone:5000
+auth_url = http://openstack-keystone:5000
+memcached_servers = openstack-memcached:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = {{ NEUTRON_USER }}
+password = {{ NEUTRON_PASSWORD }}
+[oslo_concurrency]
+lock_path = $state_path/lock
